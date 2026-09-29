@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>AIFreeBox - Free AI Tools</title>
-  <meta name="description" content="AIFreeBox - Free YouTube title generator and useful AI tools.">
+
+  <meta name="description"
+        content="AIFreeBox offers free YouTube title and description generator tools for creators.">
 
   <style>
     * {
@@ -37,33 +39,34 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 850px;
       margin: auto;
       padding: 30px 18px;
     }
 
-    .generator {
+    .tool {
       background: white;
       padding: 25px;
       border-radius: 18px;
       box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
-    .generator h2 {
+    .tool h2 {
       text-align: center;
       margin-bottom: 10px;
     }
 
-    .generator p {
+    .tool-description {
       text-align: center;
       color: #667085;
       margin-bottom: 20px;
+      line-height: 1.5;
     }
 
     textarea {
       width: 100%;
-      height: 120px;
+      min-height: 120px;
       padding: 15px;
       border: 1px solid #d0d5dd;
       border-radius: 10px;
@@ -93,24 +96,20 @@
       background: #4520d6;
     }
 
-    #results {
-      margin-top: 25px;
-    }
-
-    .title-box {
+    .result {
+      margin-top: 20px;
       background: #f8f9fc;
       border: 1px solid #e4e7ec;
-      padding: 15px;
+      padding: 18px;
       border-radius: 10px;
-      margin-bottom: 12px;
-      font-size: 16px;
+      line-height: 1.6;
+      white-space: pre-line;
     }
 
     .copy-btn {
       background: #172033;
-      padding: 8px 12px;
       width: auto;
-      margin-top: 10px;
+      padding: 9px 15px;
       font-size: 14px;
     }
 
@@ -119,11 +118,11 @@
     }
 
     footer {
-      margin-top: 20px;
       background: #172033;
       color: white;
       text-align: center;
       padding: 25px;
+      margin-top: 20px;
     }
 
     footer p {
@@ -141,110 +140,222 @@
 
 <body>
 
-  <header>
-    <h1>🚀 AIFreeBox</h1>
-    <p>Simple & Useful Free AI Tools</p>
-  </header>
+<header>
+  <h1>🚀 AIFreeBox</h1>
+  <p>Simple & Useful Free AI Tools</p>
+</header>
 
-  <main class="container">
+<main class="container">
 
-    <div class="generator">
+  <!-- YouTube Title Generator -->
 
-      <h2>🎬 YouTube Title Generator</h2>
+  <div class="tool">
 
-      <p>
-        Enter your video topic and generate catchy YouTube title ideas.
-      </p>
+    <h2>🎬 YouTube Title Generator</h2>
 
-      <textarea
-        id="topic"
-        placeholder="Example: Funny Pakistani Kids Cartoon">
-      </textarea>
+    <p class="tool-description">
+      Enter your video topic and generate catchy YouTube titles.
+    </p>
 
-      <button onclick="generateTitles()">
-        ✨ Generate Titles
-      </button>
+    <textarea
+      id="titleTopic"
+      placeholder="Example: Funny Pakistani Kids Cartoon">
+    </textarea>
 
-      <div id="results"></div>
+    <button onclick="generateTitles()">
+      ✨ Generate Titles
+    </button>
 
-    </div>
+    <div id="titleResults"></div>
 
-  </main>
-
-  <footer>
-    <p>© 2026 AIFreeBox</p>
-    <p>Free AI Tools for Creators</p>
-  </footer>
+  </div>
 
 
-  <script>
+  <!-- YouTube Description Generator -->
 
-    function generateTitles() {
+  <div class="tool">
 
-      const topic = document.getElementById("topic").value.trim();
-      const results = document.getElementById("results");
+    <h2>📝 YouTube Description Generator</h2>
 
-      if (topic === "") {
-        results.innerHTML =
-          "<p>Please enter your video topic first.</p>";
-        return;
-      }
+    <p class="tool-description">
+      Enter your video topic and create a ready-to-use YouTube description.
+    </p>
 
-      const titles = [
+    <textarea
+      id="descriptionTopic"
+      placeholder="Example: A funny cartoon story about two cute kids in a Pakistani village">
+    </textarea>
 
-        "🔥 " + topic + " | You Won't Believe What Happens Next!",
+    <button onclick="generateDescription()">
+      ✨ Generate Description
+    </button>
 
-        "😂 " + topic + " | Funniest Video You Will Watch Today!",
+    <div id="descriptionResult"></div>
 
-        "😱 " + topic + " | This Was Totally Unexpected!",
+  </div>
 
-        "❤️ " + topic + " | A Cute & Funny Story",
-
-        "🎬 " + topic + " | Must Watch Till The End!"
-
-      ];
-
-      results.innerHTML = "";
-
-      titles.forEach(function(title) {
-
-        const box = document.createElement("div");
-
-        box.className = "title-box";
-
-        box.innerHTML =
-          "<strong>" + title + "</strong>" +
-          "<br>" +
-          "<button class='copy-btn' onclick='copyTitle(this)'>Copy Title</button>";
-
-        box.setAttribute("data-title", title);
-
-        results.appendChild(box);
-
-      });
-
-    }
+</main>
 
 
-    function copyTitle(button) {
+<footer>
+  <p>© 2026 AIFreeBox</p>
+  <p>Free Tools for Creators</p>
+</footer>
 
-      const box = button.parentElement;
 
-      const title = box.getAttribute("data-title");
+<script>
 
-      navigator.clipboard.writeText(title);
+function generateTitles() {
 
-      button.innerText = "Copied ✓";
+  const topic =
+    document.getElementById("titleTopic").value.trim();
 
-      setTimeout(function() {
+  const results =
+    document.getElementById("titleResults");
 
-        button.innerText = "Copy Title";
+  if (topic === "") {
 
-      }, 1500);
+    results.innerHTML =
+      '<div class="result">Please enter your video topic first.</div>';
 
-    }
+    return;
+  }
 
-  </script>
+  const titles = [
+
+    "🔥 " + topic + " | You Won't Believe What Happens Next!",
+
+    "😂 " + topic + " | Funniest Video You Will Watch Today!",
+
+    "😱 " + topic + " | This Was Totally Unexpected!",
+
+    "❤️ " + topic + " | A Cute & Funny Story",
+
+    "🎬 " + topic + " | Must Watch Till The End!"
+
+  ];
+
+  results.innerHTML = "";
+
+  titles.forEach(function(title) {
+
+    const box =
+      document.createElement("div");
+
+    box.className = "result";
+
+    box.innerHTML =
+      "<strong>" + title + "</strong>" +
+      "<br>" +
+      "<button class='copy-btn' onclick='copyText(this)'>Copy Title</button>";
+
+    box.setAttribute("data-copy", title);
+
+    results.appendChild(box);
+
+  });
+
+}
+
+
+function generateDescription() {
+
+  const topic =
+    document.getElementById("descriptionTopic").value.trim();
+
+  const result =
+    document.getElementById("descriptionResult");
+
+  if (topic === "") {
+
+    result.innerHTML =
+      '<div class="result">Please enter your video topic first.</div>';
+
+    return;
+  }
+
+
+  const description =
+
+`Welcome to AIFreeBox! 🚀
+
+In this video, we bring you an exciting and entertaining story about:
+
+${topic}
+
+Watch the complete video and enjoy the fun, cute and interesting moments. ❤️
+
+If you enjoyed this video, don't forget to LIKE 👍, COMMENT 💬 and SUBSCRIBE 🔔 for more amazing videos.
+
+Thanks for watching!
+
+#YouTube #Shorts #AIFreeBox`;
+
+
+  result.innerHTML =
+
+    "<div class='result'>" +
+
+    description +
+
+    "<br><br>" +
+
+    "<button class='copy-btn' onclick='copyDescription()'>Copy Description</button>" +
+
+    "</div>";
+
+}
+
+
+function copyText(button) {
+
+  const box =
+    button.parentElement;
+
+  const text =
+    box.getAttribute("data-copy");
+
+  navigator.clipboard.writeText(text);
+
+  button.innerText = "Copied ✓";
+
+  setTimeout(function() {
+
+    button.innerText = "Copy Title";
+
+  }, 1500);
+
+}
+
+
+function copyDescription() {
+
+  const topic =
+    document.getElementById("descriptionTopic").value.trim();
+
+  const description =
+
+`Welcome to AIFreeBox! 🚀
+
+In this video, we bring you an exciting and entertaining story about:
+
+${topic}
+
+Watch the complete video and enjoy the fun, cute and interesting moments. ❤️
+
+If you enjoyed this video, don't forget to LIKE 👍, COMMENT 💬 and SUBSCRIBE 🔔 for more amazing videos.
+
+Thanks for watching!
+
+#YouTube #Shorts #AIFreeBox`;
+
+  navigator.clipboard.writeText(description);
+
+  alert("Description copied! ✓");
+
+}
+
+</script>
 
 </body>
 </html>
