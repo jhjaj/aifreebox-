@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>AIFreeBox - Free AI Tools</title>
-  <meta name="description" content="AIFreeBox provides simple and useful free AI tools for creators, students and businesses.">
+  <meta name="description" content="AIFreeBox - Free YouTube title generator and useful AI tools.">
 
   <style>
     * {
@@ -28,95 +28,112 @@
     }
 
     header h1 {
-      font-size: 42px;
+      font-size: 40px;
       margin-bottom: 12px;
     }
 
     header p {
-      font-size: 18px;
-      opacity: 0.95;
+      font-size: 17px;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 800px;
       margin: auto;
-      padding: 35px 18px;
+      padding: 30px 18px;
     }
 
-    .section-title {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 25px;
-    }
-
-    .tools {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .tool-card {
+    .generator {
       background: white;
       padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      border-radius: 18px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+
+    .generator h2 {
       text-align: center;
-    }
-
-    .tool-card .icon {
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
-
-    .tool-card h3 {
-      font-size: 21px;
       margin-bottom: 10px;
     }
 
-    .tool-card p {
+    .generator p {
+      text-align: center;
       color: #667085;
-      line-height: 1.5;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
-    .btn {
-      display: inline-block;
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 15px;
+      border: 1px solid #d0d5dd;
+      border-radius: 10px;
+      font-size: 16px;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #5b2cff;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
       background: #5b2cff;
       color: white;
-      text-decoration: none;
-      padding: 12px 22px;
-      border-radius: 8px;
+      font-size: 17px;
       font-weight: bold;
+      cursor: pointer;
     }
 
-    .btn:hover {
+    button:hover {
       background: #4520d6;
     }
 
-    .coming {
-      opacity: 0.75;
+    #results {
+      margin-top: 25px;
+    }
+
+    .title-box {
+      background: #f8f9fc;
+      border: 1px solid #e4e7ec;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .copy-btn {
+      background: #172033;
+      padding: 8px 12px;
+      width: auto;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .copy-btn:hover {
+      background: #000;
     }
 
     footer {
-      margin-top: 30px;
+      margin-top: 20px;
       background: #172033;
       color: white;
       text-align: center;
-      padding: 25px 15px;
+      padding: 25px;
     }
 
     footer p {
-      margin: 5px;
       color: #cbd5e1;
+      margin: 5px;
     }
 
     @media (max-width: 600px) {
       header h1 {
         font-size: 32px;
-      }
-
-      header p {
-        font-size: 16px;
       }
     }
   </style>
@@ -126,42 +143,29 @@
 
   <header>
     <h1>🚀 AIFreeBox</h1>
-    <p>Simple & Useful Free AI Tools for Everyone</p>
+    <p>Simple & Useful Free AI Tools</p>
   </header>
 
   <main class="container">
 
-    <h2 class="section-title">Our AI Tools</h2>
+    <div class="generator">
 
-    <div class="tools">
+      <h2>🎬 YouTube Title Generator</h2>
 
-      <div class="tool-card">
-        <div class="icon">🎬</div>
-        <h3>YouTube Title Generator</h3>
-        <p>Create catchy YouTube title ideas for your videos.</p>
-        <a href="#" class="btn">Try Tool</a>
-      </div>
+      <p>
+        Enter your video topic and generate catchy YouTube title ideas.
+      </p>
 
-      <div class="tool-card coming">
-        <div class="icon">📝</div>
-        <h3>AI Description Generator</h3>
-        <p>Create engaging descriptions for your videos and posts.</p>
-        <a href="#" class="btn">Coming Soon</a>
-      </div>
+      <textarea
+        id="topic"
+        placeholder="Example: Funny Pakistani Kids Cartoon">
+      </textarea>
 
-      <div class="tool-card coming">
-        <div class="icon">#️⃣</div>
-        <h3>Hashtag Generator</h3>
-        <p>Generate useful hashtags for social media content.</p>
-        <a href="#" class="btn">Coming Soon</a>
-      </div>
+      <button onclick="generateTitles()">
+        ✨ Generate Titles
+      </button>
 
-      <div class="tool-card coming">
-        <div class="icon">💡</div>
-        <h3>AI Prompt Generator</h3>
-        <p>Create useful AI prompts for your daily work.</p>
-        <a href="#" class="btn">Coming Soon</a>
-      </div>
+      <div id="results"></div>
 
     </div>
 
@@ -169,8 +173,78 @@
 
   <footer>
     <p>© 2026 AIFreeBox</p>
-    <p>Free AI Tools for Creators & Everyone</p>
+    <p>Free AI Tools for Creators</p>
   </footer>
+
+
+  <script>
+
+    function generateTitles() {
+
+      const topic = document.getElementById("topic").value.trim();
+      const results = document.getElementById("results");
+
+      if (topic === "") {
+        results.innerHTML =
+          "<p>Please enter your video topic first.</p>";
+        return;
+      }
+
+      const titles = [
+
+        "🔥 " + topic + " | You Won't Believe What Happens Next!",
+
+        "😂 " + topic + " | Funniest Video You Will Watch Today!",
+
+        "😱 " + topic + " | This Was Totally Unexpected!",
+
+        "❤️ " + topic + " | A Cute & Funny Story",
+
+        "🎬 " + topic + " | Must Watch Till The End!"
+
+      ];
+
+      results.innerHTML = "";
+
+      titles.forEach(function(title) {
+
+        const box = document.createElement("div");
+
+        box.className = "title-box";
+
+        box.innerHTML =
+          "<strong>" + title + "</strong>" +
+          "<br>" +
+          "<button class='copy-btn' onclick='copyTitle(this)'>Copy Title</button>";
+
+        box.setAttribute("data-title", title);
+
+        results.appendChild(box);
+
+      });
+
+    }
+
+
+    function copyTitle(button) {
+
+      const box = button.parentElement;
+
+      const title = box.getAttribute("data-title");
+
+      navigator.clipboard.writeText(title);
+
+      button.innerText = "Copied ✓";
+
+      setTimeout(function() {
+
+        button.innerText = "Copy Title";
+
+      }, 1500);
+
+    }
+
+  </script>
 
 </body>
 </html>
