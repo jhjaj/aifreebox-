@@ -356,6 +356,64 @@ Thanks for watching!
 }
 
 </script>
+<div style="max-width:700px;margin:30px auto;padding:20px;background:#f5f5f5;border-radius:15px;text-align:center;">
+  <h2>🚀 YouTube Hashtag Generator</h2>
+  <p>Enter your video topic and generate hashtags instantly.</p>
 
+  <input
+    type="text"
+    id="hashtagTopic"
+    placeholder="Enter your video topic..."
+    style="width:90%;padding:12px;border:1px solid #ccc;border-radius:8px;margin:10px 0;"
+  >
+
+  <button
+    onclick="generateHashtags()"
+    style="padding:12px 20px;border:0;border-radius:8px;cursor:pointer;"
+  >
+    Generate Hashtags
+  </button>
+
+  <div
+    id="hashtagResult"
+    style="margin-top:20px;font-weight:bold;line-height:1.8;"
+  ></div>
+</div>
+
+<script>
+function generateHashtags() {
+  const topic = document.getElementById("hashtagTopic").value.trim();
+  const result = document.getElementById("hashtagResult");
+
+  if (!topic) {
+    result.innerHTML = "⚠️ Please enter a video topic.";
+    return;
+  }
+
+  const words = topic
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9\s]/g, "")
+    .split(/\s+/)
+    .filter(Boolean);
+
+  const mainTag = words.join("");
+  const firstTag = words[0] || "video";
+
+  const hashtags = [
+    "#" + mainTag,
+    "#" + firstTag,
+    "#YouTube",
+    "#YouTubeShorts",
+    "#Shorts",
+    "#Viral",
+    "#Trending",
+    "#Video",
+    "#ContentCreator",
+    "#AIFreeBox"
+  ];
+
+  result.innerHTML = hashtags.join(" ");
+}
+</script>
 </body>
 </html>
