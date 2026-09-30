@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AIFreeBox - Free AI Tools for YouTube Creators</title>
-<meta name="description" content="AIFreeBox offers free online AI tools for YouTube creators, including title, description, hashtag and tag generators.">
-  
+  <title>AIFreeBox - Free AI Tools for YouTube Creators</title>
+
+  <meta name="description" content="AIFreeBox offers free online AI tools for YouTube creators, including title, description, hashtag and tag generators.">
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -19,109 +20,158 @@
       font-family: Arial, sans-serif;
       background: #f5f7fb;
       color: #172033;
+      line-height: 1.6;
     }
+
+    /* HEADER */
 
     header {
       background: linear-gradient(135deg, #5b2cff, #8b5cf6);
       color: white;
       text-align: center;
-      padding: 45px 20px;
+      padding: 55px 20px;
     }
 
     header h1 {
-      font-size: 40px;
+      font-size: 42px;
       margin-bottom: 12px;
     }
 
     header p {
-      font-size: 17px;
+      font-size: 18px;
+      opacity: 0.95;
     }
+
+    /* MAIN */
 
     .container {
-      max-width: 850px;
+      max-width: 1000px;
       margin: auto;
-      padding: 30px 18px;
+      padding: 35px 18px;
     }
 
-    .tool {
-      background: white;
-      padding: 25px;
-      border-radius: 18px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-      margin-bottom: 25px;
+    /* HERO IMAGE */
+
+    .hero-image {
+      width: 100%;
+      max-width: 900px;
+      display: block;
+      margin: 0 auto 35px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
     }
 
-    .tool h2 {
+    /* INTRO */
+
+    .intro {
       text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .intro h2 {
+      font-size: 30px;
       margin-bottom: 10px;
     }
 
-    .tool-description {
+    .intro p {
+      color: #667085;
+      font-size: 17px;
+    }
+
+    /* TOOLS */
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .tool-card {
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
       text-align: center;
+      transition: 0.2s;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .tool-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .tool-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .tool-card p {
       color: #667085;
       margin-bottom: 20px;
-      line-height: 1.5;
     }
 
-    textarea {
-      width: 100%;
-      min-height: 120px;
-      padding: 15px;
-      border: 1px solid #d0d5dd;
-      border-radius: 10px;
-      font-size: 16px;
-      resize: vertical;
-      outline: none;
-    }
-
-    textarea:focus {
-      border-color: #5b2cff;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 15px;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
+    .use-button {
+      display: inline-block;
+      text-decoration: none;
       background: #5b2cff;
       color: white;
-      font-size: 17px;
+      padding: 12px 24px;
+      border-radius: 10px;
       font-weight: bold;
-      cursor: pointer;
     }
 
-    button:hover {
+    .use-button:hover {
       background: #4520d6;
     }
 
-    .result {
+    /* WHY */
+
+    .why {
+      background: white;
+      margin-top: 40px;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .why h2 {
+      margin-bottom: 18px;
+      font-size: 28px;
+    }
+
+    .why p {
+      color: #667085;
+      margin-bottom: 10px;
+    }
+
+    .features {
       margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .feature {
       background: #f8f9fc;
-      border: 1px solid #e4e7ec;
       padding: 18px;
-      border-radius: 10px;
-      line-height: 1.6;
-      white-space: pre-line;
+      border-radius: 12px;
+      font-weight: bold;
     }
 
-    .copy-btn {
-      background: #172033;
-      width: auto;
-      padding: 9px 15px;
-      font-size: 14px;
-    }
-
-    .copy-btn:hover {
-      background: #000;
-    }
+    /* FOOTER */
 
     footer {
       background: #172033;
       color: white;
       text-align: center;
-      padding: 25px;
-      margin-top: 20px;
+      padding: 30px 20px;
+      margin-top: 40px;
     }
 
     footer p {
@@ -129,353 +179,217 @@
       margin: 5px;
     }
 
-    @media (max-width: 600px) {
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 40px 18px;
+      }
+
       header h1 {
         font-size: 32px;
       }
+
+      header p {
+        font-size: 16px;
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .intro h2 {
+        font-size: 26px;
+      }
+
     }
+
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>AIFreeBox - Free AI Tools for YouTube Creators</h1>
-  <p>Free online tools to generate YouTube titles, descriptions, hashtags and tags.</p>
-</header>
+  <!-- HEADER -->
 
-<main class="container">
+  <header>
 
-  <!-- YouTube Title Generator -->
+    <h1>AIFreeBox</h1>
 
-  <div class="tool">
+    <p>Free AI Tools for YouTube Creators</p>
 
-    <h2>🎬 YouTube Title Generator</h2>
+  </header>
 
-    <p class="tool-description">
-    
-  Enter your video topic and generate catchy, SEO-friendly YouTube titles for your videos and Shorts.
-    </p>
 
-    <textarea
-      id="titleTopic"
-      placeholder="Example: Funny Pakistani Kids Cartoon">
-    </textarea>
+  <!-- MAIN CONTENT -->
 
-    <button onclick="generateTitles()">
-      ✨ Generate Titles
-    </button>
+  <main class="container">
 
-    <div id="titleResults"></div>
 
-  </div>
+    <!-- HERO IMAGE -->
 
+    <img
+      class="hero-image"
+      src="https://jhjaj.github.io/aifreebox-/aifreebox-creator.png"
+      alt="AIFreeBox AI Tools for YouTube Creators"
+    >
 
-  <!-- YouTube Description Generator -->
 
-  <div class="tool">
+    <!-- INTRO -->
 
-    <h2>📝 YouTube Description Generator</h2>
+    <section class="intro">
 
-    <p class="tool-description">
-       Enter your video topic and create an engaging, SEO-friendly YouTube description for your videos and Shorts.
-    </p>
+      <h2>🚀 Free Tools for YouTube Creators</h2>
 
-    <textarea
-      id="descriptionTopic"
-      placeholder="Example: A funny cartoon story about two cute kids in a Pakistani village">
-    </textarea>
+      <p>
+        Create better YouTube content with our simple and free online tools.
+      </p>
 
-    <button onclick="generateDescription()">
-      ✨ Generate Description
-    </button>
+    </section>
 
-    <div id="descriptionResult"></div>
 
-  </div>
+    <!-- TOOLS -->
 
-</main>
+    <section class="tools-grid">
 
 
-<script>
+      <!-- TITLE -->
 
-function generateTitles() {
+      <div class="tool-card">
 
-  const topic =
-    document.getElementById("titleTopic").value.trim();
+        <div class="tool-icon">🎬</div>
 
-  const results =
-    document.getElementById("titleResults");
+        <h3>YouTube Title Generator</h3>
 
-  if (topic === "") {
+        <p>
+          Generate catchy and SEO-friendly titles for your YouTube videos and Shorts.
+        </p>
 
-    results.innerHTML =
-      '<div class="result">Please enter your video topic first.</div>';
+        <a
+          class="use-button"
+          href="title-generator.html"
+        >
+          Use Tool →
+        </a>
 
-    return;
-  }
+      </div>
 
-  const titles = [
 
-    "🔥 " + topic + " | You Won't Believe What Happens Next!",
+      <!-- DESCRIPTION -->
 
-    "😂 " + topic + " | Funniest Video You Will Watch Today!",
+      <div class="tool-card">
 
-    "😱 " + topic + " | This Was Totally Unexpected!",
+        <div class="tool-icon">📝</div>
 
-    "❤️ " + topic + " | A Cute & Funny Story",
+        <h3>YouTube Description Generator</h3>
 
-    "🎬 " + topic + " | Must Watch Till The End!"
+        <p>
+          Create engaging and SEO-friendly descriptions for your YouTube videos.
+        </p>
 
-  ];
+        <a
+          class="use-button"
+          href="description-generator.html"
+        >
+          Use Tool →
+        </a>
 
-  results.innerHTML = "";
+      </div>
 
-  titles.forEach(function(title) {
 
-    const box =
-      document.createElement("div");
+      <!-- HASHTAG -->
 
-    box.className = "result";
+      <div class="tool-card">
 
-    box.innerHTML =
-      "<strong>" + title + "</strong>" +
-      "<br>" +
-      "<button class='copy-btn' onclick='copyText(this)'>Copy Title</button>";
+        <div class="tool-icon">🚀</div>
 
-    box.setAttribute("data-copy", title);
+        <h3>YouTube Hashtag Generator</h3>
 
-    results.appendChild(box);
+        <p>
+          Generate relevant hashtags to help organize and promote your YouTube content.
+        </p>
 
-  });
+        <a
+          class="use-button"
+          href="hashtag-generator.html"
+        >
+          Use Tool →
+        </a>
 
-}
+      </div>
 
 
-function generateDescription() {
+      <!-- TAG -->
 
-  const topic =
-    document.getElementById("descriptionTopic").value.trim();
+      <div class="tool-card">
 
-  const result =
-    document.getElementById("descriptionResult");
+        <div class="tool-icon">🏷️</div>
 
-  if (topic === "") {
+        <h3>YouTube Tag Generator</h3>
 
-    result.innerHTML =
-      '<div class="result">Please enter your video topic first.</div>';
+        <p>
+          Generate relevant YouTube tags and keywords for your videos.
+        </p>
 
-    return;
-  }
+        <a
+          class="use-button"
+          href="tag-generator.html"
+        >
+          Use Tool →
+        </a>
 
+      </div>
 
-  const description =
 
-`Welcome to AIFreeBox! 🚀
+    </section>
 
-In this video, we bring you an exciting and entertaining story about:
 
-${topic}
+    <!-- WHY AIFREEBOX -->
 
-Watch the complete video and enjoy the fun, cute and interesting moments. ❤️
+    <section class="why">
 
-If you enjoyed this video, don't forget to LIKE 👍, COMMENT 💬 and SUBSCRIBE 🔔 for more amazing videos.
+      <h2>Why Use AIFreeBox?</h2>
 
-Thanks for watching!
+      <p>
+        AIFreeBox provides simple and useful tools for YouTube creators.
+      </p>
 
-#YouTube #Shorts #AIFreeBox`;
+      <div class="features">
 
+        <div class="feature">
+          🆓 100% Free
+        </div>
 
-  result.innerHTML =
+        <div class="feature">
+          ⚡ Fast & Easy
+        </div>
 
-    "<div class='result'>" +
+        <div class="feature">
+          📱 Mobile Friendly
+        </div>
 
-    description +
+      </div>
 
-    "<br><br>" +
+    </section>
 
-    "<button class='copy-btn' onclick='copyDescription()'>Copy Description</button>" +
 
-    "</div>";
+  </main>
 
-}
 
+  <!-- FOOTER -->
 
-function copyText(button) {
-
-  const box =
-    button.parentElement;
-
-  const text =
-    box.getAttribute("data-copy");
-
-  navigator.clipboard.writeText(text);
-
-  button.innerText = "Copied ✓";
-
-  setTimeout(function() {
-
-    button.innerText = "Copy Title";
-
-  }, 1500);
-
-}
-
-
-function copyDescription() {
-
-  const topic =
-    document.getElementById("descriptionTopic").value.trim();
-
-  const description =
-
-`Welcome to AIFreeBox! 🚀
-
-In this video, we bring you an exciting and entertaining story about:
-
-${topic}
-
-Watch the complete video and enjoy the fun, cute and interesting moments. ❤️
-
-If you enjoyed this video, don't forget to LIKE 👍, COMMENT 💬 and SUBSCRIBE 🔔 for more amazing videos.
-
-Thanks for watching!
-
-#YouTube #Shorts #AIFreeBox`;
-
-  navigator.clipboard.writeText(description);
-
-  alert("Description copied! ✓");
-
-}
-
-</script>
-<div style="max-width:700px;margin:30px auto;padding:20px;background:#f5f5f5;border-radius:15px;text-align:center;">
-  <h2>🚀 YouTube Hashtag Generator</h2>
-  <p class="tool-description">
-   Enter your video topic and generate relevant YouTube hashtags for videos and Shorts.
-  </p>
-
-  <input
-    type="text"
-    id="hashtagTopic"
-    placeholder="Enter your video topic..."
-    style="width:90%;padding:12px;border:1px solid #ccc;border-radius:8px;margin:10px 0;"
-  >
-
-  <button
-    onclick="generateHashtags()"
-    style="padding:12px 20px;border:0;border-radius:8px;cursor:pointer;"
-  >
-    Generate Hashtags
-  </button>
-
-  <div
-    id="hashtagResult"
-    style="margin-top:20px;font-weight:bold;line-height:1.8;"
-  ></div>
-</div>
-
-<script>
-function generateHashtags() {
-  const topic = document.getElementById("hashtagTopic").value.trim();
-  const result = document.getElementById("hashtagResult");
-
-  if (!topic) {
-    result.innerHTML = "⚠️ Please enter a video topic.";
-    return;
-  }
-
-  const words = topic
-    .toLowerCase()
-    .replace(/[^a-zA-Z0-9\s]/g, "")
-    .split(/\s+/)
-    .filter(Boolean);
-
-  const mainTag = words.join("");
-  const firstTag = words[0] || "video";
-
-  const hashtags = [
-    "#" + mainTag,
-    "#" + firstTag,
-    "#YouTube",
-    "#YouTubeShorts",
-    "#Shorts",
-    "#Viral",
-    "#Trending",
-    "#Video",
-    "#ContentCreator",
-    "#AIFreeBox"
-  ];
-
-  result.innerHTML = hashtags.join(" ");
-}
-</script>
-  <div style="max-width:700px;margin:30px auto;padding:20px;background:#f5f5f5;border-radius:15px;text-align:center;">
-  <h2>🏷️ YouTube Tag Generator</h2>
-  <p class="tool-description">
-  Enter your video topic and generate relevant YouTube tags and keywords for your videos.
-  </p>
-
-  <input
-    type="text"
-    id="tagTopic"
-    placeholder="Enter your video topic..."
-    style="width:90%;padding:12px;border:1px solid #ccc;border-radius:8px;margin:10px 0;"
-  >
-
-  <button
-    onclick="generateTags()"
-    style="padding:12px 20px;border:0;border-radius:8px;cursor:pointer;"
-  >
-    Generate Tags
-  </button>
-
-  <div
-    id="tagResult"
-    style="margin-top:20px;font-weight:bold;line-height:1.8;"
-  ></div>
-</div>
-
-<script>
-function generateTags() {
-  const topic = document.getElementById("tagTopic").value.trim();
-  const result = document.getElementById("tagResult");
-
-  if (!topic) {
-    result.innerHTML = "⚠️ Please enter a video topic.";
-    return;
-  }
-
-  const words = topic
-    .toLowerCase()
-    .replace(/[^a-zA-Z0-9\s]/g, "")
-    .split(/\s+/)
-    .filter(Boolean);
-
-  const cleanTopic = words.join(" ");
-
-  const tags = [
-    cleanTopic,
-    words.join(""),
-    words[0] || "youtube",
-    "youtube",
-    "youtube video",
-    "youtube shorts",
-    "shorts",
-    "viral video",
-    "trending",
-    "viral",
-    "content creator",
-    "AIFreeBox"
-  ];
-
-  result.innerHTML = tags.join(", ");
-}
-</script>
   <footer>
-  <p>© 2026 AIFreeBox</p>
-  <p>Free Tools for Creators</p>
-</footer>
+
+    <p>© 2026 AIFreeBox</p>
+
+    <p>Free Tools for Creators</p>
+
+  </footer>
+
+
 </body>
 </html>
