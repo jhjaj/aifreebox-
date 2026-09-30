@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact Us - AIFreeBox</title>
+
+  <meta name="description" content="Contact the AIFreeBox Team for questions, suggestions, feedback and support for our free creator tools.">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #5b2cff, #8b5cf6);
+      color: white;
+      text-align: center;
+      padding: 45px 20px;
+    }
+
+    header h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 17px;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+      padding: 30px 18px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #5b2cff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .content {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    }
+
+    .content h2 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: #172033;
+    }
+
+    .content h2:first-child {
+      margin-top: 0;
+    }
+
+    .content p {
+      margin-bottom: 15px;
+      color: #475467;
+    }
+
+    .contact-card {
+      background: #f8f9fc;
+      border-left: 4px solid #5b2cff;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+
+    .contact-card p {
+      margin-bottom: 8px;
+    }
+
+    .email {
+      color: #5b2cff;
+      font-weight: bold;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .email-button {
+      display: inline-block;
+      margin-top: 12px;
+      background: #5b2cff;
+      color: white;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .email-button:hover {
+      background: #4720d6;
+    }
+
+    .form-box {
+      margin-top: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+      color: #172033;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d0d5dd;
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+      outline: none;
+    }
+
+    .form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #5b2cff;
+    }
+
+    .send-button {
+      display: inline-block;
+      background: #5b2cff;
+      color: white;
+      border: none;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #667085;
+    }
+
+    footer {
+      background: #172033;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 30px;
+    }
+
+    footer p {
+      color: #cbd5e1;
+      margin: 5px;
+    }
+
+    @media (max-width: 600px) {
+
+      header h1 {
+        font-size: 32px;
+      }
+
+      .content {
+        padding: 22px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>Contact Us</h1>
+
+  <p>We'd Love to Hear From You</p>
+
+</header>
+
+
+<main class="container">
+
+  <a class="back" href="index.html">
+    ← Back to AIFreeBox Home
+  </a>
+
+
+  <div class="content">
+
+    <h2>Get in Touch</h2>
+
+    <p>
+      Have a question, suggestion, feedback or need help with one of our
+      tools? Feel free to contact the AIFreeBox Team.
+    </p>
+
+
+    <div class="contact-card">
+
+      <p>
+        <strong>AIFreeBox Team</strong>
+      </p>
+
+      <p>
+        Website Owner: Khurram Sial
+      </p>
+
+      <p>
+        Location: Pakistan
+      </p>
+
+      <p>
+        Email:
+        <a class="email" href="mailto:smaharkhrram@gmail.com">
+          smaharkhrram@gmail.com
+        </a>
+      </p>
+
+      <a
+        class="email-button"
+        href="mailto:smaharkhrram@gmail.com?subject=AIFreeBox%20Contact"
+      >
+        ✉ Email Us
+      </a>
+
+    </div>
+
+
+    <h2>Send Us a Message</h2>
+
+    <p>
+      You can use the form below to prepare your message. When you click
+      "Send Message", your email application will open with the message
+      details ready to send.
+    </p>
+
+
+    <div class="form-box">
+
+      <form id="contactForm">
+
+        <div class="form-group">
+
+          <label for="name">Your Name</label>
+
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="email">Your Email</label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="message">Your Message</label>
+
+          <textarea
+            id="message"
+            placeholder="Write your message here..."
+            required
+          ></textarea>
+
+        </div>
+
+
+        <button class="send-button" type="submit">
+          Send Message
+        </button>
+
+      </form>
+
+
+      <p class="note">
+        Note: This website uses a direct email link. Your email application
+        will open when you submit the form.
+      </p>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <p>© 2026 AIFreeBox</p>
+
+  <p>Free Tools for Creators</p>
+
+</footer>
+
+
+<script>
+
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !message) {
+      return;
+    }
+
+    const subject = encodeURIComponent("AIFreeBox Contact from " + name);
+
+    const body = encodeURIComponent(
+      "Name: " + name +
+      "\nEmail: " + email +
+      "\n\nMessage:\n" + message
+    );
+
+    window.location.href =
+      "mailto:smaharkhrram@gmail.com?subject=" +
+      subject +
+      "&body=" +
+      body;
+
+  });
+
+</script>
+
+
+</body>
+</html>
