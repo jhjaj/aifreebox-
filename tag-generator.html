@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>YouTube Tag Generator - AIFreeBox</title>
+  <meta name="description" content="Generate relevant YouTube tags and keywords for videos with the free AIFreeBox YouTube Tag Generator.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: linear-gradient(135deg, #5b2cff, #8b5cf6);
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      padding: 30px 18px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #5b2cff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .tool {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    }
+
+    .tool h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .tool-description {
+      text-align: center;
+      color: #667085;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #d0d5dd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #5b2cff;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #5b2cff;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4520d6;
+    }
+
+    .result {
+      margin-top: 20px;
+      background: #f8f9fc;
+      border: 1px solid #e4e7ec;
+      padding: 18px;
+      border-radius: 10px;
+      line-height: 1.8;
+      word-wrap: break-word;
+    }
+
+    .copy-btn {
+      background: #172033;
+      width: auto;
+      padding: 9px 15px;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #172033;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 30px;
+    }
+
+    footer p {
+      color: #cbd5e1;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🏷️ YouTube Tag Generator</h1>
+  <p>AIFreeBox - Free Tools for YouTube Creators</p>
+</header>
+
+<main class="container">
+
+  <a class="back" href="index.html">← Back to AIFreeBox Home</a>
+
+  <div class="tool">
+
+    <h2>Generate YouTube Tags</h2>
+
+    <p class="tool-description">
+      Enter your video topic and generate relevant YouTube tags and keywords for your videos.
+    </p>
+
+    <input
+      type="text"
+      id="tagTopic"
+      placeholder="Example: Funny Pakistani Kids Cartoon"
+    >
+
+    <button onclick="generateTags()">
+      ✨ Generate Tags
+    </button>
+
+    <div id="tagResult"></div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 AIFreeBox</p>
+  <p>Free Tools for Creators</p>
+</footer>
+
+<script>
+
+function generateTags() {
+
+  const topic =
+    document.getElementById("tagTopic").value.trim();
+
+  const result =
+    document.getElementById("tagResult");
+
+  if (!topic) {
+
+    result.innerHTML =
+      '<div class="result">⚠️ Please enter a video topic.</div>';
+
+    return;
+  }
+
+  const words = topic
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9\s]/g, "")
+    .split(/\s+/)
+    .filter(Boolean);
+
+  const cleanTopic = words.join(" ");
+
+  const tags = [
+    cleanTopic,
+    words.join(""),
+    words[0] || "youtube",
+    "youtube",
+    "youtube video",
+    "youtube shorts",
+    "shorts",
+    "viral video",
+    "trending",
+    "viral",
+    "content creator",
+    "AIFreeBox"
+  ];
+
+  const tagText = tags.join(", ");
+
+  result.innerHTML =
+    "<div class='result'>" +
+    tagText +
+    "<br><br>" +
+    "<button class='copy-btn' onclick='copyTags()'>Copy Tags</button>" +
+    "</div>";
+
+}
+
+function copyTags() {
+
+  const result =
+    document.getElementById("tagResult");
+
+  const text =
+    result.innerText.replace("Copy Tags", "").trim();
+
+  navigator.clipboard.writeText(text);
+
+  alert("Tags copied! ✓");
+
+}
+
+</script>
+
+</body>
+</html>
