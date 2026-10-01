@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>YouTube Tag Generator - AIFreeBox</title>
-  <meta name="description" content="Generate relevant YouTube tags and keywords for videos with the free AIFreeBox YouTube Tag Generator.">
+
+  <meta name="description" content="Generate relevant and SEO-friendly YouTube tags and keywords for videos and Shorts with the free AIFreeBox YouTube Tag Generator.">
 
   <style>
     * {
@@ -34,12 +35,13 @@
 
     header p {
       font-size: 16px;
+      opacity: 0.95;
     }
 
     .container {
-      max-width: 750px;
+      max-width: 780px;
       margin: auto;
-      padding: 30px 18px;
+      padding: 25px 18px 35px;
     }
 
     .back {
@@ -50,9 +52,41 @@
       font-weight: bold;
     }
 
+    .back:hover {
+      text-decoration: underline;
+    }
+
+    /* IMAGE SLIDER */
+
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      border-radius: 18px;
+      margin-bottom: 25px;
+      background: #e9eaf0;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .banner img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .banner img.active {
+      opacity: 1;
+    }
+
     .tool {
       background: white;
-      padding: 25px;
+      padding: 28px;
       border-radius: 18px;
       box-shadow: 0 5px 25px rgba(0,0,0,0.08);
     }
@@ -60,73 +94,188 @@
     .tool h2 {
       text-align: center;
       margin-bottom: 10px;
+      font-size: 25px;
     }
 
     .tool-description {
       text-align: center;
       color: #667085;
-      margin-bottom: 20px;
-      line-height: 1.5;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+
+    .label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
     }
 
     input {
       width: 100%;
       padding: 15px;
       border: 1px solid #d0d5dd;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 16px;
       outline: none;
     }
 
     input:focus {
       border-color: #5b2cff;
+      box-shadow: 0 0 0 3px rgba(91,44,255,0.08);
     }
 
-    button {
+    .hint {
+      margin-top: 8px;
+      color: #667085;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .generate-btn {
       width: 100%;
-      margin-top: 15px;
-      padding: 14px;
+      margin-top: 18px;
+      padding: 15px;
       border: none;
-      border-radius: 10px;
-      background: #5b2cff;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #5b2cff, #8b5cf6);
       color: white;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    button:hover {
-      background: #4520d6;
+    .generate-btn:hover {
+      opacity: 0.92;
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      margin-top: 20px;
+      padding: 18px;
+      text-align: center;
+      background: #f8f9fc;
+      border: 1px solid #e4e7ec;
+      border-radius: 12px;
+      color: #5b2cff;
+      font-weight: bold;
     }
 
     .result {
-      margin-top: 20px;
+      margin-top: 22px;
       background: #f8f9fc;
       border: 1px solid #e4e7ec;
-      padding: 18px;
-      border-radius: 10px;
+      padding: 20px;
+      border-radius: 12px;
       line-height: 1.8;
-      word-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .result-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .tags {
+      font-size: 15px;
+      color: #344054;
+      line-height: 2;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .copy-btn,
+    .again-btn {
+      width: auto;
+      flex: 1;
+      min-width: 140px;
+      margin-top: 0;
+      padding: 11px 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .copy-btn {
       background: #172033;
-      width: auto;
-      padding: 9px 15px;
-      font-size: 14px;
+      color: white;
+    }
+
+    .again-btn {
+      background: #ebe7ff;
+      color: #5b2cff;
+    }
+
+    .error {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff1f1;
+      border: 1px solid #ffcaca;
+      border-radius: 10px;
+      color: #b42318;
+      line-height: 1.5;
     }
 
     footer {
       background: #172033;
       color: white;
       text-align: center;
-      padding: 25px;
-      margin-top: 30px;
+      padding: 25px 18px;
+      margin-top: 10px;
     }
 
     footer p {
       color: #cbd5e1;
       margin: 5px;
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 28px 15px;
+      }
+
+      header h1 {
+        font-size: 26px;
+      }
+
+      .container {
+        padding: 20px 14px 30px;
+      }
+
+      .banner {
+        height: 170px;
+        border-radius: 14px;
+      }
+
+      .tool {
+        padding: 20px 16px;
+        border-radius: 15px;
+      }
+
+      .tool h2 {
+        font-size: 22px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .copy-btn,
+      .again-btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -140,15 +289,52 @@
 
 <main class="container">
 
-  <a class="back" href="index.html">← Back to AIFreeBox Home</a>
+  <a class="back" href="index.html">
+    ← Back to AIFreeBox Home
+  </a>
+
+  <!-- ROTATING IMAGES -->
+
+  <div class="banner">
+
+    <img
+      class="slide active"
+      src="title-generator-banner.png"
+      alt="AIFreeBox YouTube AI Tools"
+    >
+
+    <img
+      class="slide"
+      src="description-generator-banner.png"
+      alt="AIFreeBox Description Generator"
+    >
+
+    <img
+      class="slide"
+      src="hashtag-generator-banner.png"
+      alt="AIFreeBox Hashtag Generator"
+    >
+
+    <img
+      class="slide"
+      src="tag-generator-banner.png"
+      alt="AIFreeBox Tag Generator"
+    >
+
+  </div>
 
   <div class="tool">
 
     <h2>Generate YouTube Tags</h2>
 
     <p class="tool-description">
-      Enter your video topic and generate relevant YouTube tags and keywords for your videos.
+      Enter your video topic and let AI generate relevant,
+      searchable YouTube tags and keywords for your video or Short.
     </p>
+
+    <label class="label" for="tagTopic">
+      🎯 Enter Your Video Topic
+    </label>
 
     <input
       type="text"
@@ -156,8 +342,17 @@
       placeholder="Example: Funny Pakistani Kids Cartoon"
     >
 
-    <button onclick="generateTags()">
-      ✨ Generate Tags
+    <p class="hint">
+      💡 Tip: Add your main topic, characters, niche,
+      language, location or video theme for more relevant tags.
+    </p>
+
+    <button
+      class="generate-btn"
+      id="generateBtn"
+      onclick="generateTags()"
+    >
+      ✨ Generate AI Tags
     </button>
 
     <div id="tagResult"></div>
@@ -173,67 +368,291 @@
 
 <script>
 
-function generateTags() {
+/* =========================
+   IMAGE SLIDER
+========================= */
+
+const slides = document.querySelectorAll(".slide");
+
+let currentSlide = 0;
+
+setInterval(function() {
+
+  slides[currentSlide].classList.remove("active");
+
+  currentSlide =
+    (currentSlide + 1) % slides.length;
+
+  slides[currentSlide].classList.add("active");
+
+}, 2500);
+
+
+/* =========================
+   AI BACKEND
+========================= */
+
+const BACKEND_URL =
+"https://script.google.com/macros/s/AKfycbwxCB5bEIObcB7Og6FjwoSN_xKfPIHnG4E5VYShjvh8JF_It8JyiWjCfeAGbKb7CuFuVw/exec";
+
+
+/* =========================
+   GENERATE TAGS
+========================= */
+
+async function generateTags() {
 
   const topic =
-    document.getElementById("tagTopic").value.trim();
+    document.getElementById("tagTopic")
+    .value
+    .trim();
 
   const result =
     document.getElementById("tagResult");
 
-  if (!topic) {
+  const button =
+    document.getElementById("generateBtn");
+
+
+  if (topic === "") {
 
     result.innerHTML =
-      '<div class="result">⚠️ Please enter a video topic.</div>';
+      '<div class="error">⚠️ Please enter your video topic first.</div>';
 
     return;
   }
 
-  const words = topic
-    .toLowerCase()
-    .replace(/[^a-zA-Z0-9\s]/g, "")
-    .split(/\s+/)
-    .filter(Boolean);
 
-  const cleanTopic = words.join(" ");
+  button.disabled = true;
 
-  const tags = [
-    cleanTopic,
-    words.join(""),
-    words[0] || "youtube",
-    "youtube",
-    "youtube video",
-    "youtube shorts",
-    "shorts",
-    "viral video",
-    "trending",
-    "viral",
-    "content creator",
-    "AIFreeBox"
-  ];
+  button.innerText =
+    "⏳ Creating AI Tags...";
 
-  const tagText = tags.join(", ");
 
   result.innerHTML =
-    "<div class='result'>" +
-    tagText +
-    "<br><br>" +
-    "<button class='copy-btn' onclick='copyTags()'>Copy Tags</button>" +
-    "</div>";
+    '<div class="loading">🤖 AI is finding relevant YouTube tags for your topic...</div>';
+
+
+  try {
+
+    const response =
+      await fetch(BACKEND_URL, {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
+
+        body: JSON.stringify({
+
+          tool: "tag",
+
+          topic: topic
+
+        })
+
+      });
+
+
+    const data =
+      await response.json();
+
+
+    if (!data.success) {
+
+      throw new Error(
+        data.error ||
+        "AI could not generate tags."
+      );
+
+    }
+
+
+    const tags =
+      String(data.result || "").trim();
+
+
+    if (!tags) {
+
+      throw new Error(
+        "AI returned empty tags."
+      );
+
+    }
+
+
+    showTagResult(tags);
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    result.innerHTML =
+      '<div class="error">' +
+      '⚠️ Something went wrong while generating tags.<br><br>' +
+      'Please try again in a few seconds.' +
+      '</div>';
+
+  }
+
+
+  button.disabled = false;
+
+  button.innerText =
+    "✨ Generate AI Tags";
 
 }
 
-function copyTags() {
+
+/* =========================
+   SHOW RESULT
+========================= */
+
+function showTagResult(tags) {
 
   const result =
     document.getElementById("tagResult");
 
+  result.innerHTML = "";
+
+
+  const box =
+    document.createElement("div");
+
+  box.className =
+    "result";
+
+
+  const title =
+    document.createElement("div");
+
+  title.className =
+    "result-title";
+
+  title.innerText =
+    "✨ Your AI-Generated YouTube Tags";
+
+
   const text =
-    result.innerText.replace("Copy Tags", "").trim();
+    document.createElement("div");
 
-  navigator.clipboard.writeText(text);
+  text.className =
+    "tags";
 
-  alert("Tags copied! ✓");
+  text.innerText =
+    tags;
+
+
+  const actions =
+    document.createElement("div");
+
+  actions.className =
+    "actions";
+
+
+  const copyButton =
+    document.createElement("button");
+
+  copyButton.className =
+    "copy-btn";
+
+  copyButton.innerText =
+    "📋 Copy Tags";
+
+  copyButton.type =
+    "button";
+
+
+  copyButton.onclick =
+    function() {
+
+      copyTags(
+        tags,
+        copyButton
+      );
+
+    };
+
+
+  const againButton =
+    document.createElement("button");
+
+  againButton.className =
+    "again-btn";
+
+  againButton.innerText =
+    "🔄 Generate Again";
+
+  againButton.type =
+    "button";
+
+
+  againButton.onclick =
+    function() {
+
+      generateTags();
+
+    };
+
+
+  actions.appendChild(copyButton);
+
+  actions.appendChild(againButton);
+
+
+  box.appendChild(title);
+
+  box.appendChild(text);
+
+  box.appendChild(actions);
+
+
+  result.appendChild(box);
+
+}
+
+
+/* =========================
+   COPY TAGS
+========================= */
+
+async function copyTags(
+  tags,
+  button
+) {
+
+  try {
+
+    await navigator.clipboard.writeText(
+      tags
+    );
+
+    button.innerText =
+      "✅ Copied!";
+
+    setTimeout(function() {
+
+      button.innerText =
+        "📋 Copy Tags";
+
+    }, 1800);
+
+  } catch (error) {
+
+    button.innerText =
+      "❌ Copy Failed";
+
+    setTimeout(function() {
+
+      button.innerText =
+        "📋 Copy Tags";
+
+    }, 1800);
+
+  }
 
 }
 
