@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>YouTube Title Generator - AIFreeBox</title>
-  <meta name="description" content="Generate catchy and SEO-friendly YouTube titles for videos and Shorts with the free AIFreeBox YouTube Title Generator.">
+  <meta name="description" content="Generate catchy and SEO-friendly YouTube titles with the free AIFreeBox AI YouTube Title Generator.">
 
   <style>
     * {
@@ -24,30 +24,69 @@
       background: linear-gradient(135deg, #5b2cff, #8b5cf6);
       color: white;
       text-align: center;
-      padding: 35px 20px;
+      padding: 30px 18px;
     }
 
     header h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
+      font-size: 30px;
+      margin-bottom: 8px;
     }
 
     header p {
-      font-size: 16px;
+      font-size: 15px;
     }
 
     .container {
-      max-width: 750px;
+      max-width: 850px;
       margin: auto;
-      padding: 30px 18px;
+      padding: 25px 16px;
     }
 
     .back {
       display: inline-block;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       color: #5b2cff;
       text-decoration: none;
       font-weight: bold;
+    }
+
+    /* IMAGE SLIDESHOW */
+
+    .slider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 18px;
+      margin-bottom: 25px;
+      background: #111827;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      aspect-ratio: 16 / 9;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slider-label {
+      position: absolute;
+      left: 15px;
+      bottom: 15px;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      z-index: 5;
     }
 
     .tool {
@@ -60,6 +99,7 @@
     .tool h2 {
       text-align: center;
       margin-bottom: 10px;
+      font-size: 24px;
     }
 
     .tool-description {
@@ -69,45 +109,89 @@
       line-height: 1.5;
     }
 
+    .input-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
     textarea {
       width: 100%;
-      min-height: 120px;
+      min-height: 125px;
       padding: 15px;
       border: 1px solid #d0d5dd;
       border-radius: 10px;
       font-size: 16px;
       resize: vertical;
       outline: none;
+      font-family: Arial, sans-serif;
     }
 
     textarea:focus {
       border-color: #5b2cff;
+      box-shadow: 0 0 0 3px rgba(91,44,255,0.1);
     }
 
-    button {
+    .example {
+      color: #667085;
+      font-size: 13px;
+      margin-top: 7px;
+    }
+
+    .generate-btn {
       width: 100%;
-      margin-top: 15px;
-      padding: 14px;
+      margin-top: 17px;
+      padding: 15px;
       border: none;
       border-radius: 10px;
-      background: #5b2cff;
+      background: linear-gradient(135deg, #5b2cff, #7c3aed);
       color: white;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    button:hover {
-      background: #4520d6;
+    .generate-btn:hover {
+      opacity: 0.92;
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f3f0ff;
+      color: #5b2cff;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .error {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff1f2;
+      color: #b42318;
+      border: 1px solid #fecdca;
+      border-radius: 10px;
     }
 
     .result {
-      margin-top: 20px;
+      margin-top: 16px;
       background: #f8f9fc;
       border: 1px solid #e4e7ec;
-      padding: 18px;
-      border-radius: 10px;
+      padding: 16px;
+      border-radius: 12px;
       line-height: 1.6;
+    }
+
+    .title-text {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
     }
 
     .copy-btn {
@@ -115,6 +199,23 @@
       width: auto;
       padding: 9px 15px;
       font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .again-btn {
+      width: 100%;
+      margin-top: 18px;
+      padding: 13px;
+      border: 1px solid #5b2cff;
+      border-radius: 10px;
+      background: white;
+      color: #5b2cff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     footer {
@@ -129,6 +230,30 @@
       color: #cbd5e1;
       margin: 5px;
     }
+
+    @media (max-width: 600px) {
+
+      header h1 {
+        font-size: 25px;
+      }
+
+      .container {
+        padding: 20px 12px;
+      }
+
+      .tool {
+        padding: 18px;
+      }
+
+      .tool h2 {
+        font-size: 21px;
+      }
+
+      .slider {
+        border-radius: 14px;
+      }
+
+    }
   </style>
 </head>
 
@@ -136,28 +261,75 @@
 
 <header>
   <h1>🎬 YouTube Title Generator</h1>
-  <p>AIFreeBox - Free Tools for YouTube Creators</p>
+  <p>AIFreeBox - Free AI Tools for YouTube Creators</p>
 </header>
 
 <main class="container">
 
   <a class="back" href="index.html">← Back to AIFreeBox Home</a>
 
+  <!-- AIFreeBox IMAGE SLIDESHOW -->
+
+  <div class="slider">
+
+    <img
+      class="slide active"
+      src="title-generator-banner.png"
+      alt="AIFreeBox YouTube Title Generator"
+    >
+
+    <img
+      class="slide"
+      src="description-generator-banner.png"
+      alt="AIFreeBox AI Creator Tools"
+    >
+
+    <img
+      class="slide"
+      src="hashtag-generator-banner.png"
+      alt="AIFreeBox Hashtag Generator"
+    >
+
+    <img
+      class="slide"
+      src="tag-generator-banner.png"
+      alt="AIFreeBox YouTube Tag Generator"
+    >
+
+    <div class="slider-label">
+      ✨ AIFreeBox AI Creator Tools
+    </div>
+
+  </div>
+
   <div class="tool">
 
     <h2>Generate Catchy YouTube Titles</h2>
 
     <p class="tool-description">
-      Enter your video topic and generate catchy, SEO-friendly YouTube titles for your videos and Shorts.
+      Enter your video topic and let AI generate catchy, natural and SEO-friendly YouTube titles.
     </p>
+
+    <label class="input-label" for="titleTopic">
+      🎯 What is your video about?
+    </label>
 
     <textarea
       id="titleTopic"
-      placeholder="Example: Funny Pakistani Kids Cartoon">
-    </textarea>
+      maxlength="1000"
+      placeholder="Example: Funny Pakistani Kids Cartoon"
+    ></textarea>
 
-    <button onclick="generateTitles()">
-      ✨ Generate Titles
+    <div class="example">
+      Example: Funny village story about a child and a goat
+    </div>
+
+    <button
+      id="generateButton"
+      class="generate-btn"
+      onclick="generateTitles()"
+    >
+      ✨ Generate AI Titles
     </button>
 
     <div id="titleResults"></div>
@@ -168,12 +340,40 @@
 
 <footer>
   <p>© 2026 AIFreeBox</p>
-  <p>Free Tools for Creators</p>
+  <p>Free AI Tools for Creators</p>
 </footer>
 
 <script>
 
-function generateTitles() {
+const BACKEND_URL =
+  "https://script.google.com/macros/s/AKfycbwxCB5bEIObcB7Og6FjwoSN_xKfPIHnG4E5VYShjvh8JF_It8JyiWjCfeAGbKb7CuFuVw/exec";
+
+
+/* IMAGE SLIDESHOW */
+
+const slides =
+  document.querySelectorAll(".slide");
+
+let currentSlide = 0;
+
+setInterval(function() {
+
+  slides[currentSlide].classList.remove("active");
+
+  currentSlide++;
+
+  if (currentSlide >= slides.length) {
+    currentSlide = 0;
+  }
+
+  slides[currentSlide].classList.add("active");
+
+}, 2500);
+
+
+/* GENERATE AI TITLES */
+
+async function generateTitles() {
 
   const topic =
     document.getElementById("titleTopic").value.trim();
@@ -181,67 +381,228 @@ function generateTitles() {
   const results =
     document.getElementById("titleResults");
 
+  const button =
+    document.getElementById("generateButton");
+
+
   if (topic === "") {
 
     results.innerHTML =
-      '<div class="result">Please enter your video topic first.</div>';
+      '<div class="error">Please enter your video topic first.</div>';
 
     return;
   }
 
-  const titles = [
 
-    "🔥 " + topic + " | You Won't Believe What Happens Next!",
+  button.disabled = true;
 
-    "😂 " + topic + " | Funniest Video You Will Watch Today!",
+  button.innerText = "⏳ Generating AI Titles...";
 
-    "😱 " + topic + " | This Was Totally Unexpected!",
 
-    "❤️ " + topic + " | A Cute & Funny Story",
+  results.innerHTML =
+    '<div class="loading">🤖 AI is creating your YouTube titles...</div>';
 
-    "🎬 " + topic + " | Must Watch Till The End!"
 
-  ];
+  try {
+
+    const response = await fetch(
+      BACKEND_URL,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({
+          tool: "title",
+          topic: topic
+        })
+      }
+    );
+
+
+    const data =
+      await response.json();
+
+
+    if (!data.success) {
+
+      throw new Error(
+        data.error || "AI could not generate titles."
+      );
+
+    }
+
+
+    displayTitles(data.result);
+
+
+  } catch (error) {
+
+    results.innerHTML =
+      '<div class="error">' +
+      '❌ Something went wrong. Please try again.' +
+      '</div>';
+
+    console.error(error);
+
+  } finally {
+
+    button.disabled = false;
+
+    button.innerText =
+      "✨ Generate AI Titles";
+
+  }
+
+}
+
+
+/* DISPLAY AI RESULT */
+
+function displayTitles(text) {
+
+  const results =
+    document.getElementById("titleResults");
 
   results.innerHTML = "";
 
-  titles.forEach(function(title) {
+
+  const lines =
+    text
+      .split("\n")
+      .map(function(line) {
+        return line.trim();
+      })
+      .filter(function(line) {
+        return line !== "";
+      });
+
+
+  let titleNumber = 0;
+
+
+  lines.forEach(function(line) {
+
+    let cleanTitle =
+      line.replace(
+        /^\d+[\.\)\-\:]\s*/,
+        ""
+      ).trim();
+
+
+    if (!cleanTitle) {
+      return;
+    }
+
+
+    titleNumber++;
+
 
     const box =
       document.createElement("div");
 
     box.className = "result";
 
-    box.innerHTML =
-      "<strong>" + title + "</strong>" +
-      "<br>" +
-      "<button class='copy-btn' onclick='copyText(this)'>Copy Title</button>";
 
-    box.setAttribute("data-copy", title);
+    const title =
+      document.createElement("div");
+
+    title.className = "title-text";
+
+    title.innerText =
+      titleNumber + ". " + cleanTitle;
+
+
+    const copyButton =
+      document.createElement("button");
+
+    copyButton.className =
+      "copy-btn";
+
+    copyButton.type =
+      "button";
+
+    copyButton.innerText =
+      "📋 Copy Title";
+
+
+    copyButton.onclick =
+      function() {
+
+        copyText(
+          cleanTitle,
+          copyButton
+        );
+
+      };
+
+
+    box.appendChild(title);
+
+    box.appendChild(copyButton);
 
     results.appendChild(box);
 
+
+    if (titleNumber >= 10) {
+      return;
+    }
+
   });
+
+
+  const againButton =
+    document.createElement("button");
+
+  againButton.className =
+    "again-btn";
+
+  againButton.type =
+    "button";
+
+  againButton.innerText =
+    "🔄 Generate Again";
+
+
+  againButton.onclick =
+    function() {
+
+      generateTitles();
+
+    };
+
+
+  results.appendChild(againButton);
 
 }
 
-function copyText(button) {
 
-  const box =
-    button.parentElement;
+/* COPY TITLE */
 
-  const text =
-    box.getAttribute("data-copy");
+async function copyText(text, button) {
 
-  navigator.clipboard.writeText(text);
+  try {
 
-  button.innerText = "Copied ✓";
+    await navigator.clipboard.writeText(text);
 
-  setTimeout(function() {
+    button.innerText =
+      "Copied ✓";
 
-    button.innerText = "Copy Title";
 
-  }, 1500);
+    setTimeout(function() {
+
+      button.innerText =
+        "📋 Copy Title";
+
+    }, 1500);
+
+
+  } catch (error) {
+
+    button.innerText =
+      "Copy failed";
+
+  }
 
 }
 
